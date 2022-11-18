@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h2>Delete an Employee</h2>
+    <hr>
+    
+    <form action="/delete-employee" method="post">
+    	
+        <select name="employee-name" id="employee-name" class="singal">
+            <option disabled selected value="">Select Name</option>
+            {% for employee in  employees %}
+                <option value="{{ employee.name }}">{{ employee.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Delete Employee">
+
+    </form>
+{% endblock %}
+

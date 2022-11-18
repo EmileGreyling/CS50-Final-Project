@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link href="/static/styles.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="/static/favicon.png">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>Employees</title>
+
+
+        <script>
+            const DEPARTMENTS = ["Frontline", "Cashier", "Floor Assistant", "Recieving Manager", "Assistant Manager", "Store Manager"]; 
+            const GENDERS = ["Male", "Female"];
+            function check() 
+            {
+                let department =  document.querySelector("#department").value;
+                let gender = document.querySelector("#gender").value;
+                
+                if (DEPARTMENTS.includes(department) == false || GENDERS.includes(gender) == false)
+                {
+                    alert("Missing Employee Information");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Company Logo Here</h1>
+            <h2>Employee Database for Retail Companies</h2>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">All Employees</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/add-employee">Add Employee</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/delete-employee">Delete Employee</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/edit-employee">Edit Employee</a>
+            </li>
+
+        </ul>
+        <div class="container">
+            <div class="section">
+                {% block body %}{% endblock %}
+            </div>
+            <div class="section">
+
+                <h2>All Employees</h2>
+                <hr>
+
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Nickname</th>
+                            <th>Surname</th>
+                            <th>Gender</th>
+                            <th>ID Number</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Department</th> <!--Frontline, Cashier, Floor assistant, Recieving Manager, Assistant Manager, Store Manager -->
+                            <th>Start Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through the database entries to display them in this table -->
+                        {% for employee in employees %}
+                            <tr>
+                                <td>{{ employee.name}}</td>
+                                <td>{{ employee.nickname }}</td>
+                                <td>{{ employee.surname }}</td>
+                                <td>{{ employee.gender }}</td>
+                                <td>{{ employee.id_number }}</td>
+                                <td>{{ employee.phone_number }}</td>
+                                <td>{{ employee.mail }}</td>
+                                <td>{{ employee.department }}
+                                <td>{{ employee.start_date}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<h2>Edit an Employee</h2>
+    <hr>
+    <form action="/edit-employee", method="post">
+        <select name="employee-name" id="employee-name" class="singal">
+            <option disabled selected value="">Select Name</option>
+            {% for employee in  employees %}
+                <option value="{{ employee.name }}">{{ employee.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+
+{% endblock %}

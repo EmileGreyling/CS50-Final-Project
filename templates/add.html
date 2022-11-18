@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h2>Add an Employee</h2>
+    <hr>
+
+    <form action="/add-employee" method="post">
+        <div  class="input-group mb-3">
+            <input class="form-control" autocomplete="off" name="name" placeholder="Name" type="text" required>
+            <input class="form-control" autocomplete="off" name="nickname" placeholder="Nickname" type="text" required>
+            <input class="form-control" autocomplete="off" name="surname" placeholder="Surname" type="text" required>
+            
+            <input class="form-control" autocomplete="off" name="id_number" placeholder="ID Number" type="text" minlength="13" maxlength="13" required>
+            <input class="form-control" autocomplete="off" name="phone" placeholder="Phone Number" type="text" minlength="15" maxlength="15" required>
+            <input class="form-control" autocomplete="off" name="mail" placeholder="Email" type="email" required>
+            <input class="form-control" autocomplete="off" name="start_date" placeholder="Start Date" type="text" id="last" required>
+        </div>
+        <div  class="input-group flex-nowrap mb-3 dropdown">
+            <select name="gender" id="gender">
+                <option disabled selected value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            
+            <select name="department" id="department">
+                <option disabled selected value="">Select Department</option>
+                {% for department in  departments %}
+                    <option value="{{ department }}">{{ department }}</option>
+                {% endfor %}
+            </select>
+
+            
+        </div>
+        <input onclick="check()"type="submit" value="Add Employee" required>
+    </form>
+{% endblock %}
+

@@ -1,0 +1,57 @@
+{% extends "layout.html" %}]
+
+{% block body %}
+
+	<h2>Edit an Employee</h2>
+	<hr>
+	 <!-- Create a form for users to change a the information of an employee-->
+     <form action="/edit-employee/employee?name={{ employee_data.name }}" method="post">
+        <div  class="input-group mb-3">
+            <input class="form-control" autocomplete="off" id="name" name="name" placeholder="Name" type="text" required>
+            <input class="form-control" autocomplete="off" id="nickname" name="nickname" placeholder="Nickname" type="text" required>
+            <input class="form-control" autocomplete="off" id="surname" name="surname" placeholder="Surname" type="text" required>
+            
+            <input class="form-control" autocomplete="off" id="id_number" name="id_number" placeholder="ID Number" type="text" minlength="13" maxlength="13" required>
+            <input class="form-control" autocomplete="off" id="phone_number" name="phone" placeholder="Phone Number" type="text" minlength="15" maxlength="15" required>
+            <input class="form-control" autocomplete="off" id="mail" name="mail" placeholder="Email" type="text" required>
+            <input class="form-control" autocomplete="off" id="start_date" name="start_date" placeholder="Start Date" type="text" id="last" required>
+        </div>
+        <div  class="input-group flex-nowrap mb-3 dropdown">
+            <select name="gender" id="gender">
+                <option disabled selected value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            
+            <select name="department" id="department">
+                <option disabled selected value="">Select Department</option>
+                {% for department in  departments %}
+                    <option value="{{ department }}">{{ department }}</option>
+                {% endfor %}
+            </select>
+
+            
+        </div>
+        <input onclick="check()"type="submit" value="Change Employee" required>
+    </form>
+	
+
+    <script>
+
+    	// Set the default values of the input fields to match the employee's information
+
+    	document.getElementById("name").value = "{{ employee_data.name }}";
+    	document.getElementById("nickname").value = "{{ employee_data.nickname }}";
+    	document.getElementById("surname").value = "{{ employee_data.surname }}";
+    	document.getElementById("gender").value = "{{ employee_data.gender }}";
+    	document.getElementById("id_number").value = "{{ employee_data.id_number }}";
+        document.getElementById("phone_number").value = "{{ employee_data.phone_number }}";
+        document.getElementById("mail").value = "{{ employee_data.mail }}";
+    	document.getElementById("department").value = "{{ employee_data.department }}";
+    	document.getElementById("start_date").value = "{{ employee_data.start_date }}";
+
+    </script>
+
+    <br>
+
+{% endblock %}
