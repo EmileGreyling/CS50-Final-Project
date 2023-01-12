@@ -1,6 +1,5 @@
 import os
 from cs50 import SQL
-import sqlite3
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
 
 
@@ -26,9 +25,6 @@ GENDERS = ["Male", "Female"]
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-# Configure SQLite database
-connection = sqlite3.connect("employees.db")
-connection.close()
 
 db = SQL("sqlite:///employees.db")
 
